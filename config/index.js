@@ -1,5 +1,7 @@
+import apiKey from './API_KEY';
+
 const config = {
-    apiKey: '',
+    apiKey,
     api: {
         server: 'http://superjob.ru',
     },

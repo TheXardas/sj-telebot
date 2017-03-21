@@ -24,7 +24,7 @@ export default function makeRequest(requestOptions) {
                 }
             }
 
-            request.accept('application/json').timeout(3000).redirects(1);
+            request.accept('application/json').timeout(3000).redirects(3);
 
             if (queryParams) {
                 request.query(queryParams);
