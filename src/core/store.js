@@ -23,6 +23,25 @@ class Store {
         return this._store[userId][key];
     }
 
+    setFilter(userId, key, value) {
+        const filters = this.getFilters(userId);
+        this.set(userId, 'filters', Object.assign({}, filters, {
+            [key]: value,
+        }));
+    }
+
+    getFilter(userId, key) {
+        const filters = this.getFilters(userId);
+        return filters[key];
+    }
+
+    getFilters(userId) {
+        return this.get(userId, 'filters') || {};
+    }
+
+    clearFilters(userId) {
+        this.set(userId, 'filters', null);
+    }
 }
 
 export default new Store();

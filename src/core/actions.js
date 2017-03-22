@@ -1,13 +1,25 @@
 import states from './constants/states';
-import mainMenuMarkup from './markups/mainMenu';
-import settingsMenuMarkup from './markups/settingsMenu';
+import settingsMenuKeyboard from './keyboards/settingsMenu';
+import searchWithFilters from './helpers/searchWithFilters';
 
 const actions = {
     [states.MAIN_MENU]: (store, msg, bot) => {
-        // Либо любой другой
-        bot.sendMessage(msg.chat.id, 'Давай-ка, бротюня, настроим поиск вакансий? Или сразу поищем что-нибудь?', {
-            reply_markup: mainMenuMarkup,
-        });
+        // Выполняем поиск, указывая, что текущее сообщение - это keywords
+        return searchWithFilters(store, msg, bot, Object.assign({}, store.getFilters(msg.chat.id), {
+            profession: msg.text,
+        }));
+    },
+    [states.SETTINGS_PROFESSION]: (store, msg, bot) => {
+        const profession = msg.text && msg.text.trim();
+
+        if (!profession) {
+            return bot.sendMessage(msg.chat.id, 'Не понял. Нужно просто текстом написать название должности.');
+        }
+
+        store.setFilter(msg.chat.id, 'profession', msg.text);
+        store.set(msg.chat.id, 'state', states.SETTINGS_ROOT);
+
+        bot.sendMessage(msg.chat.id, 'Лады.', { reply_markup: settingsMenuKeyboard });
     },
     [states.SETTINGS_SALARY]: (store, msg, bot) => {
         // Убираем возможное форматирование между цифрами
@@ -20,12 +32,11 @@ const actions = {
             return bot.sendMessage(msg.chat.id, 'Чет не понял. Напиши числом, сколько хочешь денег получать?');
         }
 
-        store.set(msg.chat.id, 'salary', salary);
-        // Сбрасываем стэйт
-        store.set(msg.chat.id, 'state', states.MAIN_MENU);
+        store.setFilter(msg.chat.id, 'salary', salary);
+        store.set(msg.chat.id, 'state', states.SETTINGS_ROOT);
+
         bot.sendMessage(msg.chat.id, `${salary} рублей, лады, понял. Что-то еще?`, {
-            reply_markup: settingsMenuMarkup,
-            parse_mode: 'Html',
+            reply_markup: settingsMenuKeyboard,
         })
     },
 };

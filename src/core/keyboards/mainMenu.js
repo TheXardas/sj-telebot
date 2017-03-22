@@ -7,8 +7,8 @@ export default {
             { text: commands.settings },
         ],
         [
-            { text: commands.about },
             { text: commands.app },
+            { text: commands.start },
         ],
     ],
     one_time_keyboard: true,

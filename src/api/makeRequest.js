@@ -1,11 +1,38 @@
 import superagent from 'superagent';
+import qs from 'qs';
+
+function prepareQueryStringParameter(param) {
+    if (typeof param === 'boolean') {
+        return param ? 1 : 0;
+    }
+    if (typeof param === 'object' && param !== null) {
+        // Массивчик
+        if (Array.isArray(param)) {
+            return param.map(prepareQueryStringParameter);
+        }
+
+        // Просто объект
+        const resultObject = {};
+        Object.keys(param).forEach(key => {
+            resultObject[key] = prepareQueryStringParameter(param[key]);
+        });
+        return resultObject;
+    }
+    // Что угодно другое
+    return param;
+}
 
 export default function makeRequest(requestOptions) {
     return new Promise((resolve, reject) => {
-        const { path, headers, method, queryParams, body } = requestOptions;
+        const { path, headers, method, query, body } = requestOptions;
 
         try {
-            const request = superagent(method, path);
+
+            let url = path;
+            if (query) {
+                url += '?' + qs.stringify(query, { arrayFormat: 'brackets' });
+            }
+            const request = superagent(method, url);
 
             request.set('X-Requested-With', 'XMLHttpRequest');
 
@@ -25,10 +52,6 @@ export default function makeRequest(requestOptions) {
             }
 
             request.accept('application/json').timeout(3000).redirects(3);
-
-            if (queryParams) {
-                request.query(queryParams);
-            }
 
             if (body) {
                 request.set('Content-Type', 'application/json');
