@@ -1,4 +1,5 @@
 import apiFetch from '../apiFetch';
+import config from '../../../config';
 
 export default function getVacancies(filters) {
     return apiFetch('/cv/search/vacancy/', Object.assign(
@@ -9,7 +10,7 @@ export default function getVacancies(filters) {
             geo: {
                 t: ['4'],
             },
-            limit: 10,
+            limit: config.vacancyLimit,
         },
         filters
     ));

@@ -4,9 +4,9 @@ import getVacancies from '../../api/get/vacancies';
 function getGender(gender) {
     switch (gender) {
         case 'male':
-            return 1;
-        case 'female':
             return 2;
+        case 'female':
+            return 3;
         default:
             return '';
     }
@@ -22,14 +22,17 @@ function prepareSearchParams(filters) {
     }
     if (filters.city) {
         searchParams.geo = {
-            t: [filters.city],
+            t: [filters.city.id],
         };
     }
-    if (filters.order) {
-        searchParams.orderBy = filters.order;
+    if (filters.order && filters.order === 'salary') {
+        searchParams.order_by = {'payment_sort': 'desc'};
     }
     if (parseInt(filters.salary, 10)) {
         searchParams.pay1 = parseInt(filters.salary, 10);
+    }
+    if (filters.page) {
+        searchParams.page = filters.page;
     }
     // TODO зарплата по договоренности и прочие фильтры
     return searchParams;

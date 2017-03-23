@@ -13,6 +13,11 @@ import resetSettings from './commandActions/resetSettings';
 import resetSettingsCommit from './commandActions/resetSettingsCommit';
 import setProfession from './commandActions/setProfession';
 import resetProfession from './commandActions/resetProfession';
+import setCity from './commandActions/setCity';
+import setCityAny from './commandActions/setCityAny';
+import commitOrder from './commandActions/commitOrder';
+import setOrder from './commandActions/setOrder';
+import nextPage from './commandActions/nextPage';
 
 const commandActions = {
     [commands.back]: back,
@@ -31,6 +36,12 @@ const commandActions = {
     [commands.reset_profession]: resetProfession,
     [commands.reset_settings]: resetSettings,
     [commands.reset_settings_commit]: resetSettingsCommit,
+    [commands.set_city]: setCity,
+    [commands.set_city_any]: setCityAny,
+    [commands.set_order]: setOrder,
+    [commands.set_order_date]: (store, msg, bot) => commitOrder('date', store, msg, bot),
+    [commands.set_order_salary]: (store, msg, bot) => commitOrder('salary', store, msg, bot),
+    [commands.next_page]: nextPage,
 };
 
 export default commandActions;

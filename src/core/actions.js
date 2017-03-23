@@ -1,13 +1,29 @@
 import states from './constants/states';
 import settingsMenuKeyboard from './keyboards/settingsMenu';
-import searchWithFilters from './helpers/searchWithFilters';
+import geoKeyboard from './keyboards/city';
+import search from './commandActions/search';
+import getCityByMsg from './helpers/getCityByMsg';
 
 const actions = {
     [states.MAIN_MENU]: (store, msg, bot) => {
         // Выполняем поиск, указывая, что текущее сообщение - это keywords
-        return searchWithFilters(store, msg, bot, Object.assign({}, store.getFilters(msg.chat.id), {
-            profession: msg.text,
-        }));
+        store.setFilter(msg.chat.id, 'profession', msg.text);
+        store.setFilter(msg.chat.id, 'page', 1);
+        return search(store, msg, bot);
+    },
+    [states.SETTINGS_CITY]: (store, msg, bot) => {
+        getCityByMsg(msg).then(city => {
+            if (!city) {
+                return bot.sendMessage(msg.chat.id, 'Не удалось найти город.', { reply_markup: geoKeyboard });
+            }
+
+            store.setFilter(msg.chat.id, 'city', city);
+            store.set(msg.chat.id, 'state', states.SETTINGS_ROOT);
+            bot.sendMessage(msg.chat.id, 'Нашел: ' + city.name, { reply_markup: settingsMenuKeyboard });
+        }).catch(err => {
+            console.log(err);
+            bot.sendMessage(msg.chat.id, 'Что-то пошло не так:' + err, { reply_markup: geoKeyboard });
+        });
     },
     [states.SETTINGS_PROFESSION]: (store, msg, bot) => {
         const profession = msg.text && msg.text.trim();

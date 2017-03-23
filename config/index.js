@@ -5,6 +5,11 @@ const config = {
     api: {
         server: 'http://superjob.ru',
     },
+    geo: {
+        server: 'http://maps.googleapis.com',
+        endpoint: '/maps/api/geocode/json'
+    },
+    vacancyLimit: 10,
 };
 
 export default config;

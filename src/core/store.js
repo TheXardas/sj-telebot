@@ -25,9 +25,18 @@ class Store {
 
     setFilter(userId, key, value) {
         const filters = this.getFilters(userId);
-        this.set(userId, 'filters', Object.assign({}, filters, {
+
+        let finalFilters = Object.assign({}, filters, {
             [key]: value,
-        }));
+        });
+
+        // Если мы изменяем какой-то фильтр, кроме номера страницы, то нужно страницу сбросить,
+        // потому что результы изменились.
+        if (finalFilters.page && key !== 'page') {
+            delete filters.page
+        }
+
+        this.set(userId, 'filters', finalFilters);
     }
 
     getFilter(userId, key) {
