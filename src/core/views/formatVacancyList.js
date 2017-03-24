@@ -1,5 +1,4 @@
 import formatVacancyItem from './formatVacancyItem';
-import commands from '../constants/commands';
 import formatCommandLink from '../views/formatCommandLink';
 import config from '../../../config';
 

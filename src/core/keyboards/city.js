@@ -1,11 +1,7 @@
 import commands from '../constants/commands';
+import generateKeyboard from '../helpers/generateKeyboard';
 
-export default {
-    keyboard: [
-        [
-            { text: commands.set_city_any },
-            { text: commands.back },
-        ]
-    ],
-    one_time_keyboard: true,
-}
+export default generateKeyboard([
+    commands.set_city_any,
+    commands.back,
+]);

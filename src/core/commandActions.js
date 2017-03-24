@@ -18,6 +18,10 @@ import setCityAny from './commandActions/setCityAny';
 import commitOrder from './commandActions/commitOrder';
 import setOrder from './commandActions/setOrder';
 import nextPage from './commandActions/nextPage';
+import setSpecialization from './commandActions/setSpecialization';
+import setSpecializationAny from './commandActions/setSpecializationAny';
+import specializationPrevious from './commandActions/specializationPrevious';
+import specializationNext from './commandActions/specializationNext';
 
 const commandActions = {
     [commands.back]: back,
@@ -41,6 +45,10 @@ const commandActions = {
     [commands.set_order]: setOrder,
     [commands.set_order_date]: (store, msg, bot) => commitOrder('date', store, msg, bot),
     [commands.set_order_salary]: (store, msg, bot) => commitOrder('salary', store, msg, bot),
+    [commands.set_specialization]: setSpecialization,
+    [commands.set_specialization_any]: setSpecializationAny,
+    [commands.specialization_previous]: specializationPrevious,
+    [commands.specialization_next]: specializationNext,
     [commands.next_page]: nextPage,
 };
 

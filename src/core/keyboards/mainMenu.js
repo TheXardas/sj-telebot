@@ -1,15 +1,9 @@
 import commands from '../constants/commands';
+import generateKeyboard from '../helpers/generateKeyboard';
 
-export default {
-    keyboard: [
-        [
-            { text: commands.search },
-            { text: commands.settings },
-        ],
-        [
-            { text: commands.app },
-            { text: commands.start },
-        ],
-    ],
-    one_time_keyboard: true,
-}
+export default generateKeyboard([
+    commands.search,
+    commands.settings,
+    commands.app,
+    commands.start,
+]);

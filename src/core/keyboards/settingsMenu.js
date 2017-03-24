@@ -1,21 +1,13 @@
 import commands from '../constants/commands';
+import generateKeyboard from '../helpers/generateKeyboard';
 
-export default {
-    keyboard: [
-        [
-            { text: commands.set_profession },
-            { text: commands.set_salary },
-            { text: commands.set_city },
-        ],
-        [
-            { text: commands.set_specialization },
-            { text: commands.set_gender },
-            { text: commands.set_order },
-        ],
-        [
-            { text: commands.reset_settings },
-            { text: commands.back },
-        ]
-    ],
-    one_time_keyboard: true,
-}
+export default generateKeyboard([
+    commands.set_profession,
+    commands.set_salary,
+    commands.set_city,
+    commands.set_specialization,
+    commands.set_gender,
+    commands.set_order,
+    commands.reset_settings,
+    commands.back,
+]);

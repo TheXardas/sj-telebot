@@ -4,12 +4,12 @@ export function formatSalaryRange(from, to) {
     const frm = parseInt(from, 10);
     const t = parseInt(to, 10);
     if (!frm && !t) {
-        return 'ЗП по договоренности';
+        return 'по договоренности';
     }
 
-    let result = 'ЗП';
+    let result = '';
     if (frm) {
-        result += ` от ${frm}`;
+        result += `от ${frm}`;
     }
     if (t) {
         result += ` до ${t}`;

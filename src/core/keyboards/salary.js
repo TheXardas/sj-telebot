@@ -1,11 +1,7 @@
 import commands from '../constants/commands';
+import generateKeyboard from '../helpers/generateKeyboard';
 
-export default {
-    keyboard: [
-        [
-            { text: commands.set_salary_any },
-            { text: commands.back},
-        ],
-    ],
-    one_time_keyboard: true,
-}
+export default generateKeyboard([
+    commands.set_salary_any,
+    commands.back,
+]);

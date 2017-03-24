@@ -6,7 +6,7 @@ export default function formatVacancyItem(vacancy) {
     return `
 [${vacancy.companyName}]
 <b>${vacancy.profession}</b>
-${formatSalary(vacancy.paymentFrom, vacancy.paymentTo)}
+Вознаграждение: ${formatSalary(vacancy.paymentFrom, vacancy.paymentTo)}
 Опубликована: ${formatDate(vacancy.publishedAt)}
 /${keysByCommands[commands.vacancy]}_${vacancy.id}`;
 }

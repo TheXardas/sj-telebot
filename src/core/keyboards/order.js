@@ -1,11 +1,7 @@
 import commands from '../constants/commands';
+import generateKeyboard from '../helpers/generateKeyboard';
 
-export default {
-    keyboard: [
-        [
-            { text: commands.set_order_date },
-            { text: commands.set_order_salary },
-        ],
-    ],
-    one_time_keyboard: true,
-}
+export default generateKeyboard([
+    commands.set_order_date,
+    commands.set_order_salary,
+]);

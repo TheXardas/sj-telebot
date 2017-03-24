@@ -10,6 +10,7 @@ const config = {
         endpoint: '/maps/api/geocode/json'
     },
     vacancyLimit: 10,
+    specializationButtonLimit: 7,
 };
 
 export default config;

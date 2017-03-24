@@ -6,11 +6,20 @@ class Store {
     };
 
     _store = {};
+    _dictionaryStore = {};
 
     _create(userId) {
         if (!this._store[userId]) {
             this._store[userId] = Object.assign({}, Store.defaultStore);
         }
+    }
+
+    setDictionary(key, value) {
+        this._dictionaryStore[key] = value;
+    }
+
+    getDictionary(key) {
+        return this._dictionaryStore[key];
     }
 
     set(userId, key, value) {
