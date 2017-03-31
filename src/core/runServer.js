@@ -3,9 +3,12 @@ import config from '../../config';
 import store from './store';
 import processMessage from './processMessage';
 import getAndSaveDictionaries from './getAndSaveDictionaries';
+import createSchema from './createSchema';
 
 export default function runServer() {
     const token = config.apiKey;
+
+    createSchema();
 
     // Грузим словарные значения.
     getAndSaveDictionaries(store).then(() => {

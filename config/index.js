@@ -11,6 +11,13 @@ const config = {
     },
     vacancyLimit: 10,
     specializationButtonLimit: 7,
+    db: {
+        host: 'localhost',
+        dialect: 'sqlite',
+        storage: 'db.db',
+        username: '',
+        password: '',
+    },
 };
 
 export default config;
