@@ -9,7 +9,7 @@ const config = {
         server: 'http://maps.googleapis.com',
         endpoint: '/maps/api/geocode/json'
     },
-    vacancyLimit: 10,
+    vacancyLimit: 5,
     specializationButtonLimit: 7,
     db: {
         host: 'localhost',

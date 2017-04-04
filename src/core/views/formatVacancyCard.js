@@ -28,14 +28,22 @@ function renderCompanyInfo(vacancy) {
     return `\n\n<b>${vacancy.companyName}</b>\n${vacancy.aboutCompany}`;
 }
 
-export default function formatVacancyCard(vacancy) {
+export default function formatVacancyCard(vacancy, visibleBlock) {
     let result = `<a href="${vacancy.url}">${vacancy.profession}</a>`;
     result += '\nЗП ' + formatSalary(vacancy.paymentFrom, vacancy.paymentTo);
     result += `\nОпубликована ${formatDate(vacancy.publishedAt)}`;
-    result += renderAbout(vacancy);
-    result += renderRequirements(vacancy);
-    result += renderOffer(vacancy);
-    result += renderCompanyInfo(vacancy);
-    result += `\n<a href="${vacancy.url}">Отклинуться на сайте</a>`;
+
+    if (visibleBlock === 'aboutVacancy') {
+        result += renderAbout(vacancy);
+    }
+    if (visibleBlock === 'vacancyRequirements') {
+        result += renderRequirements(vacancy);
+    }
+    if (visibleBlock === 'vacancyReward') {
+        result += renderOffer(vacancy);
+    }
+    if (visibleBlock === 'aboutCompanyVacancy') {
+        result += renderCompanyInfo(vacancy);
+    }
     return result;
 }

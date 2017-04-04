@@ -3,6 +3,7 @@ import config from '../../config';
 //import store from './store';
 import store from './dbStore';
 import processMessage from './processMessage';
+import processInlineMessage from './processInlineMessage';
 import getAndSaveDictionaries from './getAndSaveDictionaries';
 import createSchema from './createSchema';
 
@@ -28,8 +29,7 @@ export default function runServer() {
         };
 
         bot.on('callback_query', (msg) => {
-            bot.answerCallbackQuery(msg.id, answer[msg.data]);
-            console.log(msg);
+            processInlineMessage(store, msg, bot);
         });
     });
 }
