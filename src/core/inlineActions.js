@@ -13,7 +13,6 @@ export default {
             disable_web_page_preview: true,
             reply_markup: getVacancyCardKeyboard(vacancy),
         });
-        bot.answerCallbackQuery(msg.id);
     },
     aboutCompanyVacancy: async (store, msg, bot, vacancyId) => {
         const vacancy = await getVacancy(vacancyId);
