@@ -13,10 +13,11 @@ export default {
             disable_web_page_preview: true,
             reply_markup: getVacancyCardKeyboard(vacancy),
         });
+        bot.answerCallbackQuery(msg.id);
     },
     aboutCompanyVacancy: async (store, msg, bot, vacancyId) => {
         const vacancy = await getVacancy(vacancyId);
-        bot.editMessageText(formatVacancyCard(vacancy, 'aboutCompanyVacancy'), {
+        return bot.editMessageText(formatVacancyCard(vacancy, 'aboutCompanyVacancy'), {
             parse_mode: 'Html',
             chat_id: msg.message.chat.id,
             message_id: msg.message.message_id,
@@ -26,7 +27,7 @@ export default {
     },
     vacancyRequirements: async (store, msg, bot, vacancyId) => {
         const vacancy = await getVacancy(vacancyId);
-        bot.editMessageText(formatVacancyCard(vacancy, 'vacancyRequirements'), {
+        return bot.editMessageText(formatVacancyCard(vacancy, 'vacancyRequirements'), {
             parse_mode: 'Html',
             chat_id: msg.message.chat.id,
             message_id: msg.message.message_id,
@@ -36,7 +37,7 @@ export default {
     },
     vacancyReward: async (store, msg, bot, vacancyId) => {
         const vacancy = await getVacancy(vacancyId);
-        bot.editMessageText(formatVacancyCard(vacancy, 'vacancyReward'), {
+        return bot.editMessageText(formatVacancyCard(vacancy, 'vacancyReward'), {
             parse_mode: 'Html',
             chat_id: msg.message.chat.id,
             message_id: msg.message.message_id,

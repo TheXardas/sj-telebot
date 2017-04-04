@@ -1,6 +1,6 @@
 import inlineActions from './inlineActions';
 
-export default function processInlineMessage(store, msg, bot) {
+export default async function processInlineMessage(store, msg, bot) {
     // вырезаем цифру - это айдишник.
     let id = msg.data.match(/\d+/);
     if (!id) {
@@ -15,5 +15,6 @@ export default function processInlineMessage(store, msg, bot) {
         console.error('whoops!', msg.data, actionName);
     }
 
-    return action(store, msg, bot, id);
+    await action(store, msg, bot, id);
+    bot.answerCallbackQuery(msg.id);
 }
