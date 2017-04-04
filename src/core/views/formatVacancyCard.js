@@ -36,5 +36,6 @@ export default function formatVacancyCard(vacancy) {
     result += renderRequirements(vacancy);
     result += renderOffer(vacancy);
     result += renderCompanyInfo(vacancy);
+    result += `\n<a href="${vacancy.url}">Отклинуться на сайте</a>`;
     return result;
 }

@@ -3,5 +3,5 @@ export default function formatSpecialization(spec) {
         return '';
     }
 
-    return spec.label;
+    return spec.name;
 }

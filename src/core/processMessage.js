@@ -29,8 +29,8 @@ function getCommandActionByMessage(msg) {
     return commandActions[commands[actionName]];
 }
 
-export function executeStateAction(store, msg, bot) {
-    const state = store.get(msg.chat.id, 'state');
+export async function executeStateAction(store, msg, bot) {
+    const state = await store.get(msg.chat.id, 'state');
     const action = actions[state] || actions.MAIN_MENU;
     return action(store, msg, bot);
 }

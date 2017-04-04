@@ -1,7 +1,7 @@
 import settingsMenuKeyboard from '../keyboards/settingsMenu';
 import states from '../constants/states';
 
-export default function commitGender(gender, store, msg, bot) {
+export default async function commitGender(gender, store, msg, bot) {
     let text = '';
     switch (gender) {
         case 'male':
@@ -16,8 +16,8 @@ export default function commitGender(gender, store, msg, bot) {
             break;
     }
 
-    store.setFilter(msg.chat.id, 'gender', gender);
-    store.set(msg.chat.id, 'state', states.SETTINGS_ROOT);
+    await store.setFilter(msg.chat.id, 'gender', gender);
+    await store.set(msg.chat.id, 'state', states.SETTINGS_ROOT);
     return bot.sendMessage(msg.chat.id, text, {
         reply_markup: settingsMenuKeyboard,
     });

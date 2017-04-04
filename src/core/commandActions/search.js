@@ -1,5 +1,6 @@
 import searchWithFilters from '../helpers/searchWithFilters';
 
-export default function search(store, msg, bot) {
-    return searchWithFilters(store, msg, bot, store.getFilters(msg.chat.id));
+export default async function search(store, msg, bot) {
+    const filters = await store.getFilters(msg.chat.id);
+    return searchWithFilters(store, msg, bot, filters);
 }

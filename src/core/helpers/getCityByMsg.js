@@ -4,9 +4,8 @@ import getCities from '../../api/get/cities';
 /**
  * Получить наш объект города, по его названию.
  */
-function getCityObjectByCityName(cityName) {
-    // TODO закэшировать при старте, и иногда обновлять?
-    return getCities().then(cities => {
+function getCityObjectByCityName(store, cityName) {
+    return store.getCities().then(cities => {
         let selectedCity;
         cities.some(city => {
             if (city.name.toLowerCase() === cityName.toLowerCase()) {
@@ -39,21 +38,21 @@ function getCityNameByGeo(latitude, longtitude) {
 /**
  * Получить наш объект города по его координатам
  */
-function getCityByLocation(latitude, longitude) {
+function getCityByLocation(store, latitude, longitude) {
     return getCityNameByGeo(latitude, longitude).then(cityName => {
-        return getCityObjectByCityName(cityName);
+        return getCityObjectByCityName(store, cityName);
     });
 }
 
 /**
  * Получить наш объект города по сообщению пользователя (локация или название города текстом)
  */
-export default function getCityByMsg(msg) {
+export default function getCityByMsg(store, msg) {
     if (msg.location) {
-        return getCityByLocation(msg.location.latitude, msg.location.longitude);
+        return getCityByLocation(store, msg.location.latitude, msg.location.longitude);
     }
 
     if (msg.text) {
-        return getCityObjectByCityName(msg.text.trim());
+        return getCityObjectByCityName(store, msg.text.trim());
     }
 }

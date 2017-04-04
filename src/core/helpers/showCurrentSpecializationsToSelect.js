@@ -2,16 +2,18 @@ import generateKeyboard from './generateKeyboard';
 import config from '../../../config';
 import commands from '../constants/commands';
 
-export default function showCurrentSpecializationsToSelect(store, msg, bot) {
+export default async function showCurrentSpecializationsToSelect(store, msg, bot) {
     const limit = config.specializationButtonLimit;
-    const page = store.get(msg.chat.id, 'specializationPage') || 0;
+    const page = await store.get(msg.chat.id, 'specializationPage') || 0;
 
     const firstEntry = page * limit;
-    const allSpecializations = store.getDictionary('specializations').slice(0);
+
+    let allSpecializations = await store.getSpecializations();
+    allSpecializations = allSpecializations.slice(0);
     // Добавляем вначало "без специализации". Такой хак, чтобы не сломать пагинацию
-    allSpecializations.unshift({ label: commands.set_specialization_any });
+    allSpecializations.unshift({ name: commands.set_specialization_any });
     const specializationsToShow = allSpecializations.slice(firstEntry, firstEntry + limit);
-    const specCommands = specializationsToShow.map(specialization => specialization.label);
+    const specCommands = specializationsToShow.map(specialization => specialization.name);
 
 
     if (page > 0) {

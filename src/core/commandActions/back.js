@@ -26,8 +26,8 @@ function showMainMenu(store, msg, bot) {
     });
 }
 
-export default function back(store, msg, bot) {
-    const state = store.get(msg.chat.id, 'state');
+export default async function back(store, msg, bot) {
+    const state = await store.get(msg.chat.id, 'state');
 
     if (settingsStates.includes(state)) {
         return settings(store, msg, bot);
