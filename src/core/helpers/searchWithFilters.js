@@ -32,7 +32,7 @@ function prepareSearchParams(filters) {
         searchParams.pay1 = parseInt(filters.salary, 10);
     }
     if (filters.page) {
-        searchParams.page = filters.page;
+        searchParams.page = filters.page + 1;
     }
     // TODO зарплата по договоренности и прочие фильтры
     return searchParams;

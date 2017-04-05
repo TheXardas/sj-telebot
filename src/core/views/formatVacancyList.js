@@ -11,5 +11,5 @@ export default function formatVacancyList(vacancies, page) {
 
     const renderedVacancies = vacancies.map(vacancy => formatVacancyItem(vacancy)).join('\n');
 
-    return renderedVacancies + `\n\n(Страница ${page})`;
+    return renderedVacancies + `\n\n(Страница ${truePage})`;
 }
