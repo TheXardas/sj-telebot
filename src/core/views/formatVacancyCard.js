@@ -33,17 +33,20 @@ export default function formatVacancyCard(vacancy, visibleBlock) {
     result += '\nЗП ' + formatSalary(vacancy.paymentFrom, vacancy.paymentTo);
     result += `\nОпубликована ${formatDate(vacancy.publishedAt)}`;
 
-    if (visibleBlock === 'aboutVacancy') {
-        result += renderAbout(vacancy);
-    }
-    if (visibleBlock === 'vacancyRequirements') {
-        result += renderRequirements(vacancy);
-    }
-    if (visibleBlock === 'vacancyReward') {
-        result += renderOffer(vacancy);
-    }
-    if (visibleBlock === 'aboutCompanyVacancy') {
-        result += renderCompanyInfo(vacancy);
+    switch (visibleBlock) {
+        case 'vacancyRequirements':
+            result += renderRequirements(vacancy);
+            break;
+        case 'vacancyReward':
+            result += renderOffer(vacancy);
+            break;
+        case 'aboutCompanyVacancy':
+            result += renderCompanyInfo(vacancy);
+            break;
+        case 'aboutVacancy':
+        default:
+            result += renderAbout(vacancy);
+            break;
     }
     return result;
 }
