@@ -42,11 +42,7 @@ export default function searchWithFilters(store, msg, bot, filters) {
     const searchParams = prepareSearchParams(filters);
 
     return getVacancies(searchParams).then(data => {
-        const vacancies = data.list;
-
-        bot.sendMessage(msg.chat.id, formatVacancyList(vacancies), {
-            parse_mode: 'Html',
-        });
+        return data.list;
     }).catch(err => {
         bot.sendMessage(msg.chat.id, 'Блин, чет у меня не получилось: ' + err);
         console.error(err);

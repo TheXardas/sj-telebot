@@ -3,6 +3,8 @@ const inlineCommands = {
     'vacancyRequirements': 'Требования',
     'vacancyReward': 'Условия',
     'aboutCompanyVacancy': 'О компании',
+    'prevVacancyPage': 'Назад',
+    'nextVacancyPage': 'Еще',
 };
 
 const keysByCommands = {};
