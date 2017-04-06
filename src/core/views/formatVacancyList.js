@@ -5,7 +5,7 @@ import config from '../../../config';
 export default function formatVacancyList(vacancies, page) {
     const truePage = (parseInt(page, 10) || 0) + 1;
 
-    if (!vacancies.length) {
+    if (!vacancies || !vacancies.length) {
         return 'Пардоньте, ничего не нашлось. Можно попробовать дотюнить настройки поиск, или переформулировать вопрос.';
     }
 

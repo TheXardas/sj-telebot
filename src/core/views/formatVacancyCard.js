@@ -29,7 +29,8 @@ function renderCompanyInfo(vacancy) {
 }
 
 export default function formatVacancyCard(vacancy, visibleBlock) {
-    let result = `<a href="${vacancy.url}">${vacancy.profession}</a>`;
+    let result = `[${vacancy.companyName}]`;
+    result += `\n<a href="${vacancy.url}">${vacancy.profession}</a>`;
     result += '\nЗП ' + formatSalary(vacancy.paymentFrom, vacancy.paymentTo);
     result += `\nОпубликована ${formatDate(vacancy.publishedAt)}`;
 

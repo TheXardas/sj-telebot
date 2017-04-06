@@ -31,8 +31,9 @@ function prepareSearchParams(filters) {
     if (parseInt(filters.salary, 10)) {
         searchParams.pay1 = parseInt(filters.salary, 10);
     }
-    if (filters.page) {
-        searchParams.page = filters.page + 1;
+    const page = parseInt(filters.page) | 0;
+    if (page) {
+        searchParams.page = page + 1;
     }
     // TODO зарплата по договоренности и прочие фильтры
     return searchParams;
@@ -44,7 +45,7 @@ export default function searchWithFilters(store, msg, bot, filters) {
     return getVacancies(searchParams).then(data => {
         return data.list;
     }).catch(err => {
-        bot.sendMessage(msg.chat.id, 'Блин, чет у меня не получилось: ' + err);
+        bot.sendMessage(msg.message.chat.id, 'Блин, чет у меня не получилось: ' + err);
         console.error(err);
     });
 }

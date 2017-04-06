@@ -6,7 +6,7 @@ export default function getVacancyListKeyboard(vacancies, page) {
         inline_keyboard: [[]],
     };
 
-    const truePage = parseInt(page, 10);
+    const truePage = parseInt(page, 10) || 0;
 
     if (truePage) {
         result.inline_keyboard[0].push({

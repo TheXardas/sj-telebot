@@ -15,6 +15,12 @@ export default async function processInlineMessage(store, msg, bot) {
         console.error('whoops!', msg.data, actionName);
     }
 
-    await action(store, msg, bot, id);
+    try {
+        await action(store, msg, bot, id);
+    } catch (e) {
+        console.error(e);
+    }
+
+
     bot.answerCallbackQuery(msg.id);
 }

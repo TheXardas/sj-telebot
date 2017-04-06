@@ -32,12 +32,21 @@ function getCommandActionByMessage(msg) {
 export async function executeStateAction(store, msg, bot) {
     const state = await store.get(msg.chat.id, 'state');
     const action = actions[state] || actions.MAIN_MENU;
-    return action(store, msg, bot);
+    try {
+        return await action(store, msg, bot);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
-export function executeCommandAction(store, msg, bot) {
+export async function executeCommandAction(store, msg, bot) {
     const action = getCommandActionByMessage(msg);
-    return action(store, msg, bot);
+
+    try {
+        return await action(store, msg, bot);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 export default function processMessage(store, msg, bot) {

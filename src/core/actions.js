@@ -9,7 +9,7 @@ const actions = {
     [states.MAIN_MENU]: async (store, msg, bot) => {
         // Выполняем поиск, указывая, что текущее сообщение - это keywords
         await store.setFilter(msg.chat.id, 'profession', msg.text);
-        await store.setFilter(msg.chat.id, 'page', 1);
+        await store.setFilter(msg.chat.id, 'page', 0);
         return search(store, msg, bot);
     },
     [states.SETTINGS_SPECIALIZATION]: async (store, msg, bot) => {
