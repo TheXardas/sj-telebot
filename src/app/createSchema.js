@@ -1,4 +1,4 @@
-import db from './db';
+import db from '../core/db';
 
 export default function createSchema() {
     db.serialize(() => {

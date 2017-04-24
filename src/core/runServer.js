@@ -1,11 +1,11 @@
 import TelegramBot from 'node-telegram-bot-api';
 import config from '../../config';
-//import store from './store';
-import store from './dbStore';
+//import store from '../app/store';
+import store from '../app/dbStore';
 import processMessage from './processMessage';
 import processInlineMessage from './processInlineMessage';
-import getAndSaveDictionaries from './getAndSaveDictionaries';
-import createSchema from './createSchema';
+import getAndSaveDictionaries from '../app/getAndSaveDictionaries';
+import createSchema from '../app/createSchema';
 
 export default function runServer() {
     const token = config.apiKey;
@@ -22,11 +22,6 @@ export default function runServer() {
         bot.on('message', (msg) => {
             processMessage(store, msg, bot);
         });
-
-        const answer = {
-            opa: 'Опочки-попо!',
-            valera: 'Опа, Валера!! Валера, начинается, Валера!',
-        };
 
         bot.on('callback_query', (msg) => {
             processInlineMessage(store, msg, bot);

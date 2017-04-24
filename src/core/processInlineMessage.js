@@ -1,4 +1,4 @@
-import inlineActions from './inlineActions';
+import inlineActions from '../app/inlineActions';
 
 export default async function processInlineMessage(store, msg, bot) {
     // вырезаем цифру - это айдишник.

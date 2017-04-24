@@ -1,6 +1,6 @@
-import actions from './actions';
-import commandActions from './commandActions';
-import commands from './constants/commands';
+import actions from '../app/actions';
+import commandActions from '../app/commandActions';
+import commands from '../app/constants/commands';
 
 function getCommandActionByMessage(msg) {
     if (!msg.text) {

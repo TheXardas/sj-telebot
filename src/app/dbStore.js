@@ -1,5 +1,5 @@
 import states from './constants/states';
-import db from './db';
+import db from '../core/db';
 
 class DbStore {
 

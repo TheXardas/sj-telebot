@@ -1,5 +1,5 @@
 import formatVacancyItem from './formatVacancyItem';
-import formatCommandLink from '../views/formatCommandLink';
+import formatCommandLink from './formatCommandLink';
 import config from '../../../config';
 
 export default function formatVacancyList(vacancies, page) {
