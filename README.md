@@ -4,6 +4,11 @@
 
 
 Запуск:
-npm i
-npm start
 
+- Создать **config/API_KEY.js**, с содержимым:
+
+```
+export default 'YOUR_API_KEY:GOES_HERE';
+```
+- ```npm i```
+- ```npm start```
